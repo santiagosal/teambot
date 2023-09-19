@@ -1,0 +1,9 @@
+{
+  "generator-teams": {
+    "promptValues": {
+      "developer": "santiago salazar"
+    },
+    "libraryName": "conversationBot",
+    "generator-version": "4.1.0"
+  }
+}
