@@ -29,16 +29,20 @@ export class MainDialog extends ComponentDialog {
             .addDialog(new TeamsInfoDialog())
             .addDialog(new HelpDialog())
             .addDialog(new MentionUserDialog())
-            .addDialog(new WaterfallDialog(MAIN_WATERFALL_DIALOG_ID, [
-                this.introStep.bind(this),
-                this.actStep.bind(this),
-                this.finalStep.bind(this)
-            ]));
+            .addDialog(
+                new WaterfallDialog(MAIN_WATERFALL_DIALOG_ID, [
+                    this.introStep.bind(this),
+                    this.actStep.bind(this)
+                ])
+            );
         this.initialDialogId = MAIN_WATERFALL_DIALOG_ID;
         this.onboarding = false;
     }
 
-    public async run(context: TurnContext, accessor: StatePropertyAccessor<DialogState>) {
+    public async run(
+        context: TurnContext,
+        accessor: StatePropertyAccessor<DialogState>
+    ) {
         const dialogSet = new DialogSet(accessor);
         dialogSet.add(this);
         const dialogContext = await dialogSet.createContext(context);
@@ -48,10 +52,18 @@ export class MainDialog extends ComponentDialog {
         }
     }
 
-    private async introStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
+    private async introStep(
+        stepContext: WaterfallStepContext
+    ): Promise<DialogTurnResult> {
         if ((stepContext.options as any).restartMsg) {
-            const messageText = (stepContext.options as any).restartMsg ? (stepContext.options as any).restartMsg : "What can I help you with today?";
-            const promptMessage = MessageFactory.text(messageText, messageText, InputHints.ExpectingInput);
+            const messageText = (stepContext.options as any).restartMsg
+                ? (stepContext.options as any).restartMsg
+                : "What can I help you with today?";
+            const promptMessage = MessageFactory.text(
+                messageText,
+                messageText,
+                InputHints.ExpectingInput
+            );
             return await stepContext.prompt("TextPrompt", { prompt: promptMessage });
         } else {
             this.onboarding = true;
@@ -59,15 +71,17 @@ export class MainDialog extends ComponentDialog {
         }
     }
 
-    private async actStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
+    private async actStep(
+        stepContext: WaterfallStepContext
+    ): Promise<DialogTurnResult> {
         if (stepContext.result) {
             /*
-            ** This is where you would add LUIS to your bot, see this link for more information:
-            ** https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&tabs=javascript
-            */
+       ** This is where you would add LUIS to your bot, see this link for more information:
+       ** https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&tabs=javascript
+       */
             const result = stepContext.result.trim().toLocaleLowerCase();
             switch (result) {
-                case "who" :
+                case "who":
                 case "who am i?": {
                     return await stepContext.beginDialog("teamsInfoDialog");
                 }
@@ -78,10 +92,6 @@ export class MainDialog extends ComponentDialog {
                 case "mention me":
                 case "mention": {
                     return await stepContext.beginDialog("mentionUserDialog");
-                }
-                default: {
-                    await stepContext.context.sendActivity("Ok, maybe next time 😉");
-                    return await stepContext.next();
                 }
             }
         } else if (this.onboarding) {
@@ -95,16 +105,8 @@ export class MainDialog extends ComponentDialog {
                 case "mention": {
                     return await stepContext.beginDialog("mentionUserDialog");
                 }
-                default: {
-                    await stepContext.context.sendActivity("Ok, maybe next time 😉");
-                    return await stepContext.next();
-                }
             }
         }
         return await stepContext.next();
-    }
-
-    private async finalStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
-        return await stepContext.replaceDialog(this.initialDialogId, { restartMsg: "What else can I do for you?" });
     }
 }

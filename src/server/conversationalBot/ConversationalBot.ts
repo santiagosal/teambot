@@ -3,8 +3,8 @@ import * as debug from "debug";
 import { CardFactory, ConversationState, MemoryStorage, UserState, TurnContext, MessageFactory, ActivityTypes } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import WelcomeCard from "./cards/welcomeCard";
-import { DialogSet } from "botbuilder-dialogs";
+import WelcomeCard from "./cards/welcomeCard/welcomeCard";
+import HolidaysCard from "./cards/holidaysCard/holidaysCard";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -47,10 +47,10 @@ export class ConversationalBot extends DialogBot {
                         text = text.toLocaleLowerCase();
                         if (text.startsWith("mentionme")) {
                             await this.handleMessageMentionMeOneOnOne(context);
-                        } else if (text.startsWith("hello")) {
-                            await context.sendActivity("Oh, hello to you as well!");
-                        } else {
-                            await context.sendActivity("I'm terribly sorry, but my developer hasn't trained me.");
+                        } else if (text.includes("hola") || text.includes("hi") || text.includes("hello")) {
+                            await context.sendActivity("Hello, how can I help you today?");
+                        } else if (text.includes("holidays") || text.includes("festivos") || text.includes("feriados")) {
+                            await this.sendHolidaysCard(context);
                         }
                     }
                     break;
@@ -58,11 +58,21 @@ export class ConversationalBot extends DialogBot {
                     break;
             }
         });
+
+        this.onTeamsChannelCreatedEvent(async (channelInfo, teamInfo, context: TurnContext, next) => {
+            await this.sendWelcomeCard( context );
+            await next();
+        });
     }
 
     public async sendWelcomeCard( context: TurnContext ): Promise<void> {
         const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
         await context.sendActivity({ attachments: [welcomeCard] });
+    }
+
+    public async sendHolidaysCard( context: TurnContext ): Promise<void> {
+        const holidaysCard = CardFactory.adaptiveCard(HolidaysCard);
+        await context.sendActivity({ attachments: [holidaysCard] });
     }
 
     private async handleMessageMentionMeOneOnOne(context: TurnContext): Promise<void> {
