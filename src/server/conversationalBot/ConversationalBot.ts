@@ -56,7 +56,7 @@ export class ConversationalBot extends DialogBot {
                         } else if (text.includes("openair") || text.includes("timesheet") || text.includes("hoja de horas")) {
                             await this.sendOpenairCard(context);
                         } else if (text.includes("payroll") || text.includes("quincena") || text.includes("nomina")) {
-                            await this.sendOpenairCard(context);
+                            await this.sendPayrollCard(context);
                         }
                     }
                     break;
