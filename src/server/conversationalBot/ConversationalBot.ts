@@ -9,6 +9,7 @@ import OpenairCard from "./cards/openairCard/openairCard";
 import PayrollCard from "./cards/payrollCard/payrollCard";
 import DigitalPasspordCard from "./cards/digitalPassportCard/digitalPassportCard";
 import SavingfundCard from "./cards/savingfundCard/savingfundCard";
+import OneonOneCard from "./cards/oneononeCard/oneoneCard";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -63,7 +64,10 @@ export class ConversationalBot extends DialogBot {
                             await this.sendDigitalPassportCard(context);
                         } else if (text.includes("saving fund") || text.includes("fondo de ahorro")) {
                             await this.sendSavingFundCard(context);
+                        } else if (text.includes("one on one") || text.includes("1:1")|| text.includes("uno a uno")) {
+                            await this.sendOneonOneCard(context);
                         }
+                        
                     }
                     break;
                 default:
@@ -104,6 +108,11 @@ export class ConversationalBot extends DialogBot {
 
     public async sendSavingFundCard( context: TurnContext ): Promise<void> {
         const card = CardFactory.adaptiveCard(SavingfundCard);
+        await context.sendActivity({ attachments: [card] });
+    }
+
+    public async sendOneonOneCard( context: TurnContext ): Promise<void> {
+        const card = CardFactory.adaptiveCard(OneonOneCard);
         await context.sendActivity({ attachments: [card] });
     }
 
