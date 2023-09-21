@@ -7,6 +7,7 @@ import WelcomeCard from "./cards/welcomeCard/welcomeCard";
 import HolidaysCard from "./cards/holidaysCard/holidaysCard";
 import OpenairCard from "./cards/openairCard/openairCard";
 import PayrollCard from "./cards/payrollCard/payrollCard";
+import DigitalPasspordCard from "./cards/digitalPassportCard/digitalPassportCard";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -57,6 +58,8 @@ export class ConversationalBot extends DialogBot {
                             await this.sendOpenairCard(context);
                         } else if (text.includes("payroll") || text.includes("quincena") || text.includes("nomina")) {
                             await this.sendPayrollCard(context);
+                        } else if (text.includes("digital passport") || text.includes("passport")) {
+                            await this.sendDigitalPassportCard(context);
                         }
                     }
                     break;
@@ -85,9 +88,15 @@ export class ConversationalBot extends DialogBot {
         const openairCard = CardFactory.adaptiveCard(OpenairCard);
         await context.sendActivity({ attachments: [openairCard] });
     }
+
     public async sendPayrollCard( context: TurnContext ): Promise<void> {
         const payrollCard = CardFactory.adaptiveCard(PayrollCard);
         await context.sendActivity({ attachments: [payrollCard] });
+    }
+
+    public async sendDigitalPassportCard( context: TurnContext ): Promise<void> {
+        const card = CardFactory.adaptiveCard(DigitalPasspordCard);
+        await context.sendActivity({ attachments: [card] });
     }
 
     private async handleMessageMentionMeOneOnOne(context: TurnContext): Promise<void> {
