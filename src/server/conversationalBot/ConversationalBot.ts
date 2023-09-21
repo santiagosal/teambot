@@ -8,6 +8,7 @@ import HolidaysCard from "./cards/holidaysCard/holidaysCard";
 import OpenairCard from "./cards/openairCard/openairCard";
 import PayrollCard from "./cards/payrollCard/payrollCard";
 import DigitalPasspordCard from "./cards/digitalPassportCard/digitalPassportCard";
+import SavingfundCard from "./cards/savingfundCard/savingfundCard";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -60,6 +61,8 @@ export class ConversationalBot extends DialogBot {
                             await this.sendPayrollCard(context);
                         } else if (text.includes("digital passport") || text.includes("passport")) {
                             await this.sendDigitalPassportCard(context);
+                        } else if (text.includes("saving fund") || text.includes("fondo de ahorro")) {
+                            await this.sendSavingFundCard(context);
                         }
                     }
                     break;
@@ -96,6 +99,11 @@ export class ConversationalBot extends DialogBot {
 
     public async sendDigitalPassportCard( context: TurnContext ): Promise<void> {
         const card = CardFactory.adaptiveCard(DigitalPasspordCard);
+        await context.sendActivity({ attachments: [card] });
+    }
+
+    public async sendSavingFundCard( context: TurnContext ): Promise<void> {
+        const card = CardFactory.adaptiveCard(SavingfundCard);
         await context.sendActivity({ attachments: [card] });
     }
 
