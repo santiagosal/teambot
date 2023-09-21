@@ -5,6 +5,7 @@ import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
 import WelcomeCard from "./cards/welcomeCard/welcomeCard";
 import HolidaysCard from "./cards/holidaysCard/holidaysCard";
+import OpenairCard from "./cards/openairCard/openairCard";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -51,6 +52,8 @@ export class ConversationalBot extends DialogBot {
                             await context.sendActivity("Hello, how can I help you today?");
                         } else if (text.includes("holidays") || text.includes("festivos") || text.includes("feriados")) {
                             await this.sendHolidaysCard(context);
+                        } else if (text.includes("openair") || text.includes("timesheet") || text.includes("hoja de horas")) {
+                            await this.sendOpenairCard(context);
                         }
                     }
                     break;
@@ -73,6 +76,11 @@ export class ConversationalBot extends DialogBot {
     public async sendHolidaysCard( context: TurnContext ): Promise<void> {
         const holidaysCard = CardFactory.adaptiveCard(HolidaysCard);
         await context.sendActivity({ attachments: [holidaysCard] });
+    }
+
+    public async sendOpenairCard( context: TurnContext ): Promise<void> {
+        const openairCard = CardFactory.adaptiveCard(OpenairCard);
+        await context.sendActivity({ attachments: [openairCard] });
     }
 
     private async handleMessageMentionMeOneOnOne(context: TurnContext): Promise<void> {
