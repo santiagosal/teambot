@@ -25,6 +25,7 @@
                             "type": "TextBlock",
                             "text": "1:1 On demand",
                             "wrap": true,
+                            "weight": "Bolder",
                             "fontType": "Default",
                             "size": "Medium"
                         },

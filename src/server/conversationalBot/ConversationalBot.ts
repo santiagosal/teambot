@@ -3,7 +3,7 @@ import * as debug from "debug";
 import { ConversationState, MemoryStorage, UserState, TurnContext, MessageFactory, ActivityTypes } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import { sendDigitalPassportCard, sendHolidaysCard, sendOfficeCard, sendOneonOneCard, sendOpenairCard, sendPayrollCard, sendSavingFundCard, sendWelcomeCard } from "./cardsFunctions";
+import { sendDigitalPassportCard, sendHolidaysCard, sendLearningCard, sendOfficeCard, sendOneonOneCard, sendOpenairCard, sendPayrollCard, sendSavingFundCard, sendWelcomeCard } from "./cardsFunctions";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -62,6 +62,8 @@ export class ConversationalBot extends DialogBot {
                             await sendOneonOneCard(context);
                         } else if (text.includes("office") || text.includes("oficina")) {
                             await sendOfficeCard(context);
+                        } else if (text.includes("learning") || text.includes("courses") || text.includes("cursos") || text.includes("career path")) {
+                            await sendLearningCard(context);
                         }
                     }
                     break;

@@ -25,6 +25,7 @@
                             "type": "TextBlock",
                             "text": "Payroll Portal",
                             "wrap": true,
+                            "weight": "Bolder",
                             "fontType": "Default",
                             "size": "Medium"
                         },

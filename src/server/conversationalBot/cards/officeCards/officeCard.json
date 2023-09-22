@@ -8,12 +8,24 @@
             "columns": [
                 {
                     "type": "Column",
+                    "width": 1,
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "data:image/png;base64,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",
+                            "size": "Large"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
                     "width": 2,
                     "items": [
                         {
                             "type": "TextBlock",
                             "text": "Office",
                             "wrap": true,
+                            "weight": "Bolder",
                             "fontType": "Default",
                             "size": "Medium"
                         },

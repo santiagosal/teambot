@@ -25,6 +25,7 @@
                             "type": "TextBlock",
                             "text": "Digital Passport",
                             "wrap": true,
+                            "weight": "Bolder",
                             "fontType": "Default",
                             "size": "Medium"
                         },

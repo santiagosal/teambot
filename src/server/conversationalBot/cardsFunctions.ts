@@ -7,6 +7,7 @@ import DigitalPasspordCard from "./cards/digitalPassportCard/digitalPassportCard
 import OfficeCard from "./cards/officeCards/officeCard";
 import OneonOneCard from "./cards/oneononeCard/oneoneCard";
 import SavingfundCard from "./cards/savingfundCard/savingfundCard";
+import LearningCard from "./cards/learningCard/learningCard";
 
 export const sendWelcomeCard = async function( context: TurnContext ): Promise<void> {
     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
@@ -45,5 +46,10 @@ export const sendOneonOneCard = async function( context: TurnContext ): Promise<
 
 export const sendOfficeCard = async function( context: TurnContext ): Promise<void> {
     const card = CardFactory.adaptiveCard(OfficeCard);
+    await context.sendActivity({ attachments: [card] });
+};
+
+export const sendLearningCard = async function( context: TurnContext ): Promise<void> {
+    const card = CardFactory.adaptiveCard(LearningCard);
     await context.sendActivity({ attachments: [card] });
 };

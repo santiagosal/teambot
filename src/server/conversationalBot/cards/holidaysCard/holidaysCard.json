@@ -25,6 +25,7 @@
                             "type": "TextBlock",
                             "text": "Holidays & Vacations",
                             "wrap": true,
+                            "weight": "Bolder",
                             "fontType": "Default",
                             "size": "Medium"
                         },
