@@ -1,0 +1,43 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.6",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": 2,
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Office",
+                            "wrap": true,
+                            "fontType": "Default",
+                            "size": "Medium"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "Guadalajara's office is located in Avenida Punto Sur #312, 4th Floor, Office 203, los Gavilanes, Tlajomulco de Zuñiga, Jalisco, México.",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "Check the link below to know how to get access to it",
+                            "wrap": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "Office Guadalajara",
+            "url": "https://o365altimetrik.sharepoint.com/sites/AltimetrikMexico/SitePages/Office.aspx",
+            "style": "positive"
+        }
+    ]
+}

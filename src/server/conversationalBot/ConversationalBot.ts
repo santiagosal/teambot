@@ -1,15 +1,9 @@
 import { BotDeclaration } from "express-msteams-host";
 import * as debug from "debug";
-import { CardFactory, ConversationState, MemoryStorage, UserState, TurnContext, MessageFactory, ActivityTypes } from "botbuilder";
+import { ConversationState, MemoryStorage, UserState, TurnContext, MessageFactory, ActivityTypes } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import WelcomeCard from "./cards/welcomeCard/welcomeCard";
-import HolidaysCard from "./cards/holidaysCard/holidaysCard";
-import OpenairCard from "./cards/openairCard/openairCard";
-import PayrollCard from "./cards/payrollCard/payrollCard";
-import DigitalPasspordCard from "./cards/digitalPassportCard/digitalPassportCard";
-import SavingfundCard from "./cards/savingfundCard/savingfundCard";
-import OneonOneCard from "./cards/oneononeCard/oneoneCard";
+import { sendDigitalPassportCard, sendHolidaysCard, sendOfficeCard, sendOneonOneCard, sendOpenairCard, sendPayrollCard, sendSavingFundCard, sendWelcomeCard } from "./cardsFunctions";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -37,7 +31,7 @@ export class ConversationalBot extends DialogBot {
             if (membersAdded && membersAdded.length > 0) {
                 for (let cnt = 0; cnt < membersAdded.length; cnt++) {
                     if (membersAdded[cnt].id !== context.activity.recipient.id) {
-                        await this.sendWelcomeCard( context );
+                        await sendWelcomeCard( context );
                     }
                 }
             }
@@ -53,21 +47,22 @@ export class ConversationalBot extends DialogBot {
                         if (text.startsWith("mentionme")) {
                             await this.handleMessageMentionMeOneOnOne(context);
                         } else if (text.includes("hola") || text.includes("hi") || text.includes("hello")) {
-                            await context.sendActivity("Hello, how can I help you today?");
+                            await sendWelcomeCard( context );
                         } else if (text.includes("holidays") || text.includes("festivos") || text.includes("feriados")) {
-                            await this.sendHolidaysCard(context);
+                            await sendHolidaysCard(context);
                         } else if (text.includes("openair") || text.includes("timesheet") || text.includes("hoja de horas")) {
-                            await this.sendOpenairCard(context);
+                            await sendOpenairCard(context);
                         } else if (text.includes("payroll") || text.includes("quincena") || text.includes("nomina")) {
-                            await this.sendPayrollCard(context);
+                            await sendPayrollCard(context);
                         } else if (text.includes("digital passport") || text.includes("passport")) {
-                            await this.sendDigitalPassportCard(context);
+                            await sendDigitalPassportCard(context);
                         } else if (text.includes("saving fund") || text.includes("fondo de ahorro")) {
-                            await this.sendSavingFundCard(context);
-                        } else if (text.includes("one on one") || text.includes("1:1")|| text.includes("uno a uno")) {
-                            await this.sendOneonOneCard(context);
+                            await sendSavingFundCard(context);
+                        } else if (text.includes("one on one") || text.includes("1:1") || text.includes("uno a uno")) {
+                            await sendOneonOneCard(context);
+                        } else if (text.includes("office") || text.includes("oficina")) {
+                            await sendOfficeCard(context);
                         }
-                        
                     }
                     break;
                 default:
@@ -76,44 +71,9 @@ export class ConversationalBot extends DialogBot {
         });
 
         this.onTeamsChannelCreatedEvent(async (channelInfo, teamInfo, context: TurnContext, next) => {
-            await this.sendWelcomeCard( context );
+            await sendWelcomeCard( context );
             await next();
         });
-    }
-
-    public async sendWelcomeCard( context: TurnContext ): Promise<void> {
-        const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
-        await context.sendActivity({ attachments: [welcomeCard] });
-    }
-
-    public async sendHolidaysCard( context: TurnContext ): Promise<void> {
-        const holidaysCard = CardFactory.adaptiveCard(HolidaysCard);
-        await context.sendActivity({ attachments: [holidaysCard] });
-    }
-
-    public async sendOpenairCard( context: TurnContext ): Promise<void> {
-        const openairCard = CardFactory.adaptiveCard(OpenairCard);
-        await context.sendActivity({ attachments: [openairCard] });
-    }
-
-    public async sendPayrollCard( context: TurnContext ): Promise<void> {
-        const payrollCard = CardFactory.adaptiveCard(PayrollCard);
-        await context.sendActivity({ attachments: [payrollCard] });
-    }
-
-    public async sendDigitalPassportCard( context: TurnContext ): Promise<void> {
-        const card = CardFactory.adaptiveCard(DigitalPasspordCard);
-        await context.sendActivity({ attachments: [card] });
-    }
-
-    public async sendSavingFundCard( context: TurnContext ): Promise<void> {
-        const card = CardFactory.adaptiveCard(SavingfundCard);
-        await context.sendActivity({ attachments: [card] });
-    }
-
-    public async sendOneonOneCard( context: TurnContext ): Promise<void> {
-        const card = CardFactory.adaptiveCard(OneonOneCard);
-        await context.sendActivity({ attachments: [card] });
     }
 
     private async handleMessageMentionMeOneOnOne(context: TurnContext): Promise<void> {
