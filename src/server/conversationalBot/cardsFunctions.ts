@@ -10,6 +10,7 @@ import SavingfundCard from "./cards/savingfundCard/savingfundCard";
 import LearningCard from "./cards/learningCard/learningCard";
 import PrismCard from "./cards/prismCard/prismCard";
 import MedicCard from "./cards/medicCard/medicCard";
+import WellnessCard from "./cards/wellnessCard/wellnessCard";
 
 export const sendWelcomeCard = async function( context: TurnContext ): Promise<void> {
     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
@@ -63,5 +64,10 @@ export const sendPrismCard = async function( context: TurnContext ): Promise<voi
 
 export const sendMedicCard = async function( context: TurnContext ): Promise<void> {
     const card = CardFactory.adaptiveCard(MedicCard);
+    await context.sendActivity({ attachments: [card] });
+};
+
+export const sendWellnessCard = async function( context: TurnContext ): Promise<void> {
+    const card = CardFactory.adaptiveCard(WellnessCard);
     await context.sendActivity({ attachments: [card] });
 };
