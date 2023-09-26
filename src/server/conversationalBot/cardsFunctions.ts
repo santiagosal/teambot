@@ -9,6 +9,7 @@ import OneonOneCard from "./cards/oneononeCard/oneoneCard";
 import SavingfundCard from "./cards/savingfundCard/savingfundCard";
 import LearningCard from "./cards/learningCard/learningCard";
 import PrismCard from "./cards/prismCard/prismCard";
+import OpportunitiesCard from "./cards/opportunitiesCard/opportunitiesCard";
 
 export const sendWelcomeCard = async function( context: TurnContext ): Promise<void> {
     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
@@ -57,5 +58,10 @@ export const sendLearningCard = async function( context: TurnContext ): Promise<
 
 export const sendPrismCard = async function( context: TurnContext ): Promise<void> {
     const card = CardFactory.adaptiveCard(PrismCard);
+    await context.sendActivity({ attachments: [card] });
+};
+
+export const sendOpportunitiesCard = async function( context: TurnContext ): Promise<void> {
+    const card = CardFactory.adaptiveCard(OpportunitiesCard);
     await context.sendActivity({ attachments: [card] });
 };

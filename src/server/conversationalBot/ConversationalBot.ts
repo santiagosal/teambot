@@ -3,7 +3,7 @@ import * as debug from "debug";
 import { ConversationState, MemoryStorage, UserState, TurnContext, MessageFactory, ActivityTypes } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import { sendDigitalPassportCard, sendHolidaysCard, sendLearningCard, sendOfficeCard, sendOneonOneCard, sendOpenairCard, sendPayrollCard, sendPrismCard, sendSavingFundCard, sendWelcomeCard } from "./cardsFunctions";
+import { sendDigitalPassportCard, sendHolidaysCard, sendLearningCard, sendOfficeCard, sendOneonOneCard, sendOpenairCard, sendOpportunitiesCard, sendPayrollCard, sendPrismCard, sendSavingFundCard, sendWelcomeCard } from "./cardsFunctions";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -66,6 +66,8 @@ export class ConversationalBot extends DialogBot {
                             await sendLearningCard(context);
                         } else if (text.includes("prism") || text.includes("time off") || text.includes("vacaciones") || text.includes("goals") || text.includes("objetivos")) {
                             await sendPrismCard(context);
+                        } else if (text.includes("jobs") || text.includes("opportunities") || text.includes("vacantes") || text.includes("referidos")) {
+                            await sendOpportunitiesCard(context);
                         }
                     }
                     break;
