@@ -9,9 +9,9 @@ import OneonOneCard from "./cards/oneononeCard/oneoneCard";
 import SavingfundCard from "./cards/savingfundCard/savingfundCard";
 import LearningCard from "./cards/learningCard/learningCard";
 import PrismCard from "./cards/prismCard/prismCard";
-import OpportunitiesCard from "./cards/opportunitiesCard/opportunitiesCard";
 import MedicCard from "./cards/medicCard/medicCard";
 import WellnessCard from "./cards/wellnessCard/wellnessCard";
+import OpportunitiesCard from "./cards/opportunitiesCard/opportunitiesCard";
 
 export const sendWelcomeCard = async function( context: TurnContext ): Promise<void> {
     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
