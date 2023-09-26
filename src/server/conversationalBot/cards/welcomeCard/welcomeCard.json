@@ -35,7 +35,7 @@
                       {
                           "type": "TextBlock",
                           "size": "default",
-                          "text": "Hello! How can i assist you? 😀",
+                          "text": "Hello! How can I assist you? 😀",
                           "wrap": true,
                           "maxLines": 0
                       }
@@ -122,7 +122,51 @@
                     "text": "office"
                   }
                 }
-              }     
+              },
+              {
+                "type": "Action.Submit",
+                "title": "Digital Passport",
+                "data": {
+                  "msteams": {
+                    "type": "messageBack",
+                    "displayText": "digital passport",
+                    "text": "digital passport"
+                  }
+                }
+              },
+              {
+                "type": "Action.Submit",
+                "title": "Saving Funds",
+                "data": {
+                  "msteams": {
+                    "type": "messageBack",
+                    "displayText": "saving fund",
+                    "text": "saving fund"
+                  }
+                }
+              },
+              {
+                "type": "Action.Submit",
+                "title": "Office",
+                "data": {
+                  "msteams": {
+                    "type": "messageBack",
+                    "displayText": "office",
+                    "text": "office"
+                  }
+                }
+              },
+              {
+                "type": "Action.Submit",
+                "title": "Medical and Life",
+                "data": {
+                  "msteams": {
+                    "type": "messageBack",
+                    "displayText": "insurance",
+                    "text": "insurance"
+                  }
+                }
+              }    
           ]
       }
   ]
