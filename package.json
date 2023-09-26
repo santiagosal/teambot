@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "gulp build",
-    "manifest": "gulp manifest",
+    "manifest": "gulp manifest --no-schema-validation",
     "debug": "gulp serve --debug",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
   },

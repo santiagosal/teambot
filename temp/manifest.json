@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.15/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.15",
+  "id": "f9bfdc80-540e-11ee-9f94-9711ddfb5ee7",
+  "version": "0.0.1",
+  "packageName": "conversationbot",
+  "developer": {
+    "name": "santiago salazar",
+    "websiteUrl": "https://conversationbot.azurewebsites.net",
+    "privacyUrl": "https://conversationbot.azurewebsites.net/privacy.html",
+    "termsOfUseUrl": "https://conversationbot.azurewebsites.net/tou.html"
+  },
+  "name": {
+    "short": "Conversation Bot",
+    "full": "Conversation Bot"
+  },
+  "description": {
+    "short": "TODO: add short description here",
+    "full": "TODO: add full description here"
+  },
+  "icons": {
+    "outline": "icon-outline.png",
+    "color": "icon-color.png"
+  },
+  "accentColor": "#D85028",
+  "configurableTabs": [],
+  "staticTabs": [],
+  "bots": [
+    {
+      "botId": "7d7270dd-c015-439a-82ea-90cb53ade053",
+      "needsChannelSelector": true,
+      "isNotificationOnly": false,
+      "scopes": [
+        "team",
+        "personal"
+      ],
+      "commandLists": [
+        {
+          "scopes": [
+            "team",
+            "personal"
+          ],
+          "commands": [
+            {
+              "title": "Help",
+              "description": "Shows help information"
+            },
+            {
+              "title": "Who am I?",
+              "description": "Shows information about your Teams user"
+            },
+            {
+              "title": "Mention me",
+              "description": "Let the bot @mention you"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "connectors": [],
+  "composeExtensions": [],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "conversationbot.azurewebsites.net"
+  ],
+  "showLoadingIndicator": false
+}
