@@ -103,7 +103,7 @@
               },
               {
                 "type": "Action.Submit",
-                "title": "Continious Learning",
+                "title": "Continuous Learning",
                 "data": {
                   "msteams": {
                     "type": "messageBack",
