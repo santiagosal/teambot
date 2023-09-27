@@ -1,7 +1,7 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "AdaptiveCard",
-  "version": "1.4",
+  "version": "1.3",
   "body": [
       {
           "type": "ColumnSet",
@@ -34,7 +34,7 @@
                       },
                       {
                           "type": "TextBlock",
-                          "size": "default",
+                          "size": "Default",
                           "text": "Hello! How can I assist you? 😀",
                           "wrap": true,
                           "maxLines": 0
@@ -50,123 +50,133 @@
                   "type": "Action.Submit",
                   "title": "Holidays",
                   "data": {
-                    "msteams": {
-                      "type": "messageBack",
-                      "displayText": "holidays",
-                      "text": "holidays"
-                    }
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "holidays",
+                          "text": "holidays"
+                      }
                   }
               },
               {
-                "type": "Action.Submit",
-                "title": "Request Timeoff",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "time off",
-                    "text": "time off"
+                  "type": "Action.Submit",
+                  "title": "Request Timeoff",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "time off",
+                          "text": "time off"
+                      }
                   }
-                }
               },
               {
-                "type": "Action.Submit",
-                "title": "Timesheet",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "timesheet",
-                    "text": "timesheet"
+                  "type": "Action.Submit",
+                  "title": "Timesheet",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "timesheet",
+                          "text": "timesheet"
+                      }
                   }
-                }
               },
               {
-                "type": "Action.Submit",
-                "title": "Payroll",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "payroll",
-                    "text": "payroll"
+                  "type": "Action.Submit",
+                  "title": "Payroll",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "payroll",
+                          "text": "payroll"
+                      }
                   }
-                }
               },
               {
-                "type": "Action.Submit",
-                "title": "1:1 meeting",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "1:1",
-                    "text": "1:1"
+                  "type": "Action.Submit",
+                  "title": "1:1 meeting",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "1:1",
+                          "text": "1:1"
+                      }
                   }
-                }
+              }
+          ]
+      },
+      {
+          "type": "ActionSet",
+          "actions": [
+             { 
+                  "type": "Action.Submit",
+                  "title": "Continuous Learning",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "courses",
+                          "text": "courses"
+                      }
+                  }
               },
               {
-                "type": "Action.Submit",
-                "title": "Continuous Learning",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "courses",
-                    "text": "courses"
+                  "type": "Action.Submit",
+                  "title": "Office",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "office",
+                          "text": "office"
+                      }
                   }
-                }
               },
               {
-                "type": "Action.Submit",
-                "title": "Office",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "office",
-                    "text": "office"
+                  "type": "Action.Submit",
+                  "title": "Digital Passport",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "digital passport",
+                          "text": "digital passport"
+                      }
                   }
-                }
+              }
+          ]
+      },
+      {
+          "type": "ActionSet",
+          "actions": [
+             {
+                  "type": "Action.Submit",
+                  "title": "Saving Funds",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "saving fund",
+                          "text": "saving fund"
+                      }
+                  }
               },
               {
-                "type": "Action.Submit",
-                "title": "Digital Passport",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "digital passport",
-                    "text": "digital passport"
+                  "type": "Action.Submit",
+                  "title": "Office",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "office",
+                          "text": "office"
+                      }
                   }
-                }
               },
               {
-                "type": "Action.Submit",
-                "title": "Saving Funds",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "saving fund",
-                    "text": "saving fund"
+                  "type": "Action.Submit",
+                  "title": "Medical and Life",
+                  "data": {
+                      "msteams": {
+                          "type": "messageBack",
+                          "displayText": "insurance",
+                          "text": "insurance"
+                      }
                   }
-                }
-              },
-              {
-                "type": "Action.Submit",
-                "title": "Office",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "office",
-                    "text": "office"
-                  }
-                }
-              },
-              {
-                "type": "Action.Submit",
-                "title": "Medical and Life",
-                "data": {
-                  "msteams": {
-                    "type": "messageBack",
-                    "displayText": "insurance",
-                    "text": "insurance"
-                  }
-                }
-              }    
+              }
           ]
       }
   ]
