@@ -162,12 +162,12 @@
       "actions": [
         {
           "type": "Action.Submit",
-          "title": "Office",
+          "title": "Wellness",
           "data": {
             "msteams": {
               "type": "messageBack",
-              "displayText": "office",
-              "text": "office"
+              "displayText": "wellness",
+              "text": "wellness"
             }
           }
         },
