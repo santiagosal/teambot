@@ -20,7 +20,7 @@
   },
   "icons": {
     "outline": "icon-outline.png",
-    "color": "icon-color.png"
+    "color": "bot-icon.png"
   },
   "accentColor": "#D85028",
   "configurableTabs": [],
