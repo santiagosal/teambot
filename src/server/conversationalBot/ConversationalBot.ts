@@ -16,8 +16,7 @@ import {
     sendWellnessCard,
     sendSavingFundCard,
     sendWelcomeCard,
-    sendOpportunitiesCard,
-    sendEmailCard
+    sendOpportunitiesCard
 } from "./cardsFunctions";
 
 // Initialize debug logging module
@@ -87,8 +86,6 @@ export class ConversationalBot extends DialogBot {
                             await sendMedicCard(context);
                         } else if (text.includes("wellness") || text.includes("gym") || text.includes("bienestar")) {
                             await sendWellnessCard(context);
-                        } else if (text.includes("email-test")) {
-                            await sendEmailCard(context);
                         }
                     }
                     break;

@@ -12,7 +12,6 @@ import PrismCard from "./cards/prismCard/prismCard";
 import MedicCard from "./cards/medicCard/medicCard";
 import WellnessCard from "./cards/wellnessCard/wellnessCard";
 import OpportunitiesCard from "./cards/opportunitiesCard/opportunitiesCard";
-import EmailCard from "./cards/emailCard/emailCard";
 
 export const sendWelcomeCard = async function( context: TurnContext ): Promise<void> {
     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
@@ -76,10 +75,5 @@ export const sendWellnessCard = async function( context: TurnContext ): Promise<
 
 export const sendOpportunitiesCard = async function( context: TurnContext ): Promise<void> {
     const card = CardFactory.adaptiveCard(OpportunitiesCard);
-    await context.sendActivity({ attachments: [card] });
-};
-
-export const sendEmailCard = async function( context: TurnContext ): Promise<void> {
-    const card = CardFactory.adaptiveCard(EmailCard);
     await context.sendActivity({ attachments: [card] });
 };
