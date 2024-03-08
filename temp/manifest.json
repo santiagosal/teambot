@@ -11,15 +11,15 @@
     "termsOfUseUrl": "https://conversationbot.azurewebsites.net/tou.html"
   },
   "name": {
-    "short": "Conversation Bot",
-    "full": "Conversation Bot"
+    "short": "AltiBot",
+    "full": "AltiBot"
   },
   "description": {
-    "short": "TODO: add short description here",
-    "full": "TODO: add full description here"
+    "short": "Altibot",
+    "full": "Altibot: This intelligent chatbot operates on the communication platforms we already use, such as Slack or Microsoft Teams, to streamline the collection and management of links."
   },
   "icons": {
-    "outline": "icon-outline.png",
+    "outline": "alti_icon.ico",
     "color": "icon-color.png"
   },
   "accentColor": "#D85028",
@@ -40,20 +40,7 @@
             "team",
             "personal"
           ],
-          "commands": [
-            {
-              "title": "Help",
-              "description": "Shows help information"
-            },
-            {
-              "title": "Who am I?",
-              "description": "Shows information about your Teams user"
-            },
-            {
-              "title": "Mention me",
-              "description": "Let the bot @mention you"
-            }
-          ]
+          "commands": []
         }
       ]
     }
