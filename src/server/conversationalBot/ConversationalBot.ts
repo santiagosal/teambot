@@ -10,24 +10,11 @@ import {
 } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import {
-    sendDigitalPassportCard,
-    sendHolidaysCard,
-    sendLearningCard,
-    sendOfficeCard,
-    sendOneonOneCard,
-    sendOpenairCard,
-    sendPayrollCard,
-    sendPrismCard,
-    sendMedicCard,
-    sendWellnessCard,
-    sendSavingFundCard,
-    sendWelcomeCard,
-    sendOpportunitiesCard
-} from "./cardsFunctions";
+import { sendWelcomeCard } from "./cardsFunctions";
 import { getIntents } from "../services/azureNerService";
 import { extractTextIntent } from "../utilities/extractTextIntent";
-import { CHATBOT_INTENTS } from "../constants";
+import { CHATBOT_INTENTS, UNKNOWN_MESSAGE_SPA } from "../constants";
+import { workHoursIntentHandler } from "./intents/workHours/handler";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -63,12 +50,15 @@ export class ConversationalBot extends DialogBot {
         this.onMessage(async (context: TurnContext): Promise<void> => {
             const text = TurnContext.removeRecipientMention(context.activity);
             const response = await getIntents(context.activity, text);
-            const { intent } = extractTextIntent(response);
+            const { intent, entities } = extractTextIntent(response);
 
             const intents = {
-                [CHATBOT_INTENTS.GREETING]: this.handleGreetings
+                [CHATBOT_INTENTS.GREETING]: this.handleGreetings,
+                [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler
             };
-            intents[intent] ? await intents[intent](context) : await this.handleUnknown(context);
+            intents[intent]
+                ? await intents[intent](context, entities)
+                : await this.handleUnknown(context);
 
             /* if (
                 text.includes("holidays") ||
@@ -114,14 +104,6 @@ export class ConversationalBot extends DialogBot {
             ) {
                 await sendLearningCard(context);
             } else if (
-                text.includes("prism") ||
-                            text.includes("time off") ||
-                            text.includes("vacaciones") ||
-                            text.includes("goals") ||
-                            text.includes("objetivos")
-            ) {
-                await sendPrismCard(context);
-            } else if (
                 text.includes("jobs") ||
                             text.includes("opportunities") ||
                             text.includes("vacantes") ||
@@ -142,7 +124,6 @@ export class ConversationalBot extends DialogBot {
             ) {
                 await sendWellnessCard(context);
             } */
-
         });
 
         this.onTeamsChannelCreatedEvent(
@@ -155,15 +136,13 @@ export class ConversationalBot extends DialogBot {
 
     private async handleGreetings(context: TurnContext): Promise<void> {
         const replyActivity = MessageFactory.text(
-            `Welcome to Altimetrik Bot ${context.activity.from.name}, how can I assist you? 😀`
+            `Bienvenido a Altimetrik Bot ${context.activity.from.name}, ¿Cómo te puedo ayudar? 😀`
         );
         await context.sendActivity(replyActivity);
     }
 
     private async handleUnknown(context: TurnContext): Promise<void> {
-        const replyActivity = MessageFactory.text(
-            "I am sorry, but my developer hasn't trained me to understand this"
-        );
+        const replyActivity = MessageFactory.text(UNKNOWN_MESSAGE_SPA);
         await context.sendActivity(replyActivity);
     }
 }
