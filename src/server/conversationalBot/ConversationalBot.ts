@@ -10,21 +10,7 @@ import {
 } from "botbuilder";
 import { DialogBot } from "./dialogBot";
 import { MainDialog } from "./dialogs/mainDialog";
-import {
-    sendDigitalPassportCard,
-    sendHolidaysCard,
-    sendLearningCard,
-    sendOfficeCard,
-    sendOneonOneCard,
-    sendOpenairCard,
-    sendPayrollCard,
-    sendPrismCard,
-    sendMedicCard,
-    sendWellnessCard,
-    sendSavingFundCard,
-    sendWelcomeCard,
-    sendOpportunitiesCard
-} from "./cardsFunctions";
+import { sendWelcomeCard } from "./cardsFunctions";
 import { getIntents } from "../services/azureNerService";
 import { extractTextIntent } from "../utilities/extractTextIntent";
 import { CHATBOT_INTENTS, UNKNOWN_MESSAGE_SPA } from "../constants";
@@ -70,7 +56,9 @@ export class ConversationalBot extends DialogBot {
                 [CHATBOT_INTENTS.GREETING]: this.handleGreetings,
                 [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler
             };
-            intents[intent] ? await intents[intent](context, entities) : await this.handleUnknown(context);
+            intents[intent]
+                ? await intents[intent](context, entities)
+                : await this.handleUnknown(context);
 
             /* if (
                 text.includes("holidays") ||
@@ -136,7 +124,6 @@ export class ConversationalBot extends DialogBot {
             ) {
                 await sendWellnessCard(context);
             } */
-
         });
 
         this.onTeamsChannelCreatedEvent(
