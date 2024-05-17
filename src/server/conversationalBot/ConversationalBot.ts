@@ -15,6 +15,7 @@ import { getIntents } from "../services/azureNerService";
 import { extractTextIntent } from "../utilities/extractTextIntent";
 import { CHATBOT_INTENTS, UNKNOWN_MESSAGE_SPA } from "../constants";
 import { workHoursIntentHandler } from "./intents/workHours/handler";
+import { savingFoundIntentHandler } from "./intents/savingFound/handler";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -54,7 +55,8 @@ export class ConversationalBot extends DialogBot {
 
             const intents = {
                 [CHATBOT_INTENTS.GREETING]: this.handleGreetings,
-                [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler
+                [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler,
+                [CHATBOT_INTENTS.SAVING_FUND]: savingFoundIntentHandler
             };
             intents[intent]
                 ? await intents[intent](context, entities)

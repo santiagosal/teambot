@@ -16,8 +16,8 @@ export const getIntents = async (context: Partial<Activity>, text: String) => {
                     }
                 },
                 parameters: {
-                    projectName: "altibot",
-                    deploymentName: "altibot-20240129"
+                    projectName: "altibotEnglish",
+                    deploymentName: "altibot"
                 }
             },
             { headers: { "Ocp-Apim-Subscription-Key": process.env.RESOURCE_KEY } }
