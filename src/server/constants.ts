@@ -9,6 +9,7 @@ export enum CHATBOT_INTENTS {
 };
 
 export const PRISM_URL = "https://hcm44.sapsf.com/sf/home?bplte_company=altimetrik";
+export const PAYROLL_URL = "https://jadelrio.workteam.com.mx/";
 
 export const ENTITIES = {
     PLATFORM: "plataforma",
@@ -24,4 +25,4 @@ export const ENTITIES = {
     PURPOSE: "proposito"
 };
 
-export const UNKNOWN_MESSAGE_SPA = "Lo siento, mi desarrollador no me ha entrenado para entender esto";
+export const UNKNOWN_MESSAGE_SPA = "I'm sorry, my developer has not trained me to understand this.";
