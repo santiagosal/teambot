@@ -16,6 +16,7 @@ import { extractTextIntent } from "../utilities/extractTextIntent";
 import { CHATBOT_INTENTS, UNKNOWN_MESSAGE_SPA } from "../constants";
 import { workHoursIntentHandler } from "./intents/workHours/handler";
 import { savingFoundIntentHandler } from "./intents/savingFound/handler";
+import { payrollIntentHandler } from "./intents/payroll/handler";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -56,7 +57,8 @@ export class ConversationalBot extends DialogBot {
             const intents = {
                 [CHATBOT_INTENTS.GREETING]: this.handleGreetings,
                 [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler,
-                [CHATBOT_INTENTS.SAVING_FUND]: savingFoundIntentHandler
+                [CHATBOT_INTENTS.SAVING_FUND]: savingFoundIntentHandler,
+                [CHATBOT_INTENTS.PAYROLL]: payrollIntentHandler
             };
             intents[intent]
                 ? await intents[intent](context, entities)
@@ -68,28 +70,11 @@ export class ConversationalBot extends DialogBot {
                             text.includes("feriados")
             ) {
                 await sendHolidaysCard(context);
-            } else if (
-                text.includes("openair") ||
-                            text.includes("timesheet") ||
-                            text.includes("hoja de horas")
-            ) {
-                await sendOpenairCard(context);
-            } else if (
-                text.includes("payroll") ||
-                            text.includes("quincena") ||
-                            text.includes("nomina")
-            ) {
-                await sendPayrollCard(context);
-            } else if (
+            } else  if (
                 text.includes("digital passport") ||
                             text.includes("passport")
             ) {
                 await sendDigitalPassportCard(context);
-            } else if (
-                text.includes("saving fund") ||
-                            text.includes("fondo de ahorro")
-            ) {
-                await sendSavingFundCard(context);
             } else if (
                 text.includes("one on one") ||
                             text.includes("1:1") ||
