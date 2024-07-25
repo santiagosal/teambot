@@ -17,6 +17,7 @@ import { CHATBOT_INTENTS, UNKNOWN_MESSAGE_SPA } from "../constants";
 import { workHoursIntentHandler } from "./intents/workHours/handler";
 import { savingFoundIntentHandler } from "./intents/savingFound/handler";
 import { payrollIntentHandler } from "./intents/payroll/handler";
+import { holidaysIntentHandler } from "./intents/holidays/handler";
 
 // Initialize debug logging module
 const log = debug("msteams");
@@ -58,19 +59,14 @@ export class ConversationalBot extends DialogBot {
                 [CHATBOT_INTENTS.GREETING]: this.handleGreetings,
                 [CHATBOT_INTENTS.WORK_HOURS]: workHoursIntentHandler,
                 [CHATBOT_INTENTS.SAVING_FUND]: savingFoundIntentHandler,
-                [CHATBOT_INTENTS.PAYROLL]: payrollIntentHandler
+                [CHATBOT_INTENTS.PAYROLL]: payrollIntentHandler,
+                [CHATBOT_INTENTS.VACATIONS]: holidaysIntentHandler
             };
             intents[intent]
                 ? await intents[intent](context, entities)
                 : await this.handleUnknown(context);
 
-            /* if (
-                text.includes("holidays") ||
-                            text.includes("festivos") ||
-                            text.includes("feriados")
-            ) {
-                await sendHolidaysCard(context);
-            } else  if (
+            /*  if (
                 text.includes("digital passport") ||
                             text.includes("passport")
             ) {
